@@ -26,3 +26,29 @@ line(90,120,130,120);
 line(90,140,130,122);
 line(170,120,210,120);
 line(170,122,210,140);
+
+
+
+
+void setup(){
+  triangleGridGradient(new PVector(0,0),16,16,10, color(255,100,100),color(0,0,255));
+  
+}
+
+void triangleGridGradient(PVector pos, int rows, int triangles, int size,color c1, color c2){
+  for(int row = 0; row < rows; row++){
+   for(int triangle = 0; triangle < triangles; triangle++){
+     float xOffset = pos.x + size * triangle;
+     fill(lerpColor(c1,c2,(triangle/float(triangles) + row/float(rows))/2));
+     if(triangle%2 == 0){
+       triangle(xOffset, pos.y + size * 1.5 * (row+1), xOffset + size, pos.y + size * 1.5 * row, xOffset - size, pos.y + size * 1.5 * row);
+
+     } else {
+       
+       triangle(xOffset, pos.y + size * 1.5 * row, xOffset + size, pos.y + size * 1.5 * (row+1), xOffset - size, pos.y + size * 1.5 * (row+1));
+
+     }
+   }
+  }
+  
+}
